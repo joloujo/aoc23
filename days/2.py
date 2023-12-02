@@ -1,7 +1,7 @@
 from updateData import loadDay # Automatically updates data files
 import numpy as np
 
-DAY = 0
+DAY = 2
 TEST = True
 
 data = loadDay(DAY, TEST)

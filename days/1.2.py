@@ -5,6 +5,9 @@ DAY = 1
 TEST = False
 
 data = loadDay(DAY, TEST)
+if data == None:
+    print("No data yet :(")
+    exit()
 
 # create a dictionary of the digits to look for and their values
 digits= {

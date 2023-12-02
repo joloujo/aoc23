@@ -3,6 +3,7 @@ import pytz
 from datetime import datetime
 import time
 import os
+from io import TextIOWrapper
 
 YEAR = 2023
 MAX_DAY = 25
@@ -42,8 +43,13 @@ def getDay(day):
         f.write("")
         f.close()
 
-def loadDay(day, test=False):
-    data = open(f"./data/test{day}.txt") if test else open(f"./data/{day}.txt")
-    return data
+def loadDay(day, test=False, tryUpdateData=True):
+    filepath = f"./data/test{day}.txt" if test else f"./data/{day}.txt"
+    if os.path.isfile(filepath):
+        data = open(filepath, 'r')
+    elif tryUpdateData:
+        updateData()
+        return loadDay(day, test, False)
+    return None
 
 updateData()
