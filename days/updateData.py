@@ -45,11 +45,6 @@ def getDay(day):
 
 def loadDay(day, test=False, tryUpdateData=True):
     filepath = f"./data/test{day}.txt" if test else f"./data/{day}.txt"
-    if os.path.isfile(filepath):
-        data = open(filepath, 'r')
-    elif tryUpdateData:
-        updateData()
-        return loadDay(day, test, False)
-    return None
+    return open(filepath)
 
 updateData()

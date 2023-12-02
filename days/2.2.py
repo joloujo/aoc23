@@ -6,19 +6,18 @@ TEST = False
 
 data = loadDay(DAY, TEST)
 
-max_color = {
-    "red": 12,
-    "green": 13,
-    "blue": 14
-}
-
 answer = 0
 for raw_line in data:
     line = raw_line.strip('\n\r')
     
     rounds = line.split(';')
+    
+    min_color = {
+        "red": 0,
+        "green": 0,
+        "blue": 0
+    }
 
-    possible = True
     for round in rounds:
 
         words = round.split()
@@ -40,12 +39,11 @@ for raw_line in data:
             if ',' in color or ';' in color:
                 color = color[0:-1]
 
-            if number > max_color[color]:
-                possible = False
-                print 
-                break
-
-    if possible:
-        answer += id # type: ignore
+            if number > min_color[color]:
+                min_color[color] = number
     
+    answer += min_color['red'] * min_color['green'] * min_color['blue']
+    print(min_color)
+    print(answer)
+
 print(answer)
