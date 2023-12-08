@@ -2,7 +2,7 @@ from updateData import loadDay # Automatically updates data files
 import numpy as np
 
 DAY = 0
-TEST = True
+TEST = False
 
 data = loadDay(DAY, TEST)
 if data == None:
