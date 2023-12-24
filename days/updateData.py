@@ -11,7 +11,7 @@ MAX_DAY = 25
 session = str(os.environ.get('AOC_SESSION'))
 cookies = {'session': session}
 
-def updateData():
+def updateData(day = None):
     current_time = datetime.now(pytz.timezone('US/Eastern'))
 
     if current_time.year < YEAR:
@@ -27,8 +27,12 @@ def updateData():
     else:
         max_day = MAX_DAY
     
-    for day in range(1, max_day+1):
-        getDay(day)
+    if day is None:
+        for day in range(1, max_day+1):
+            getDay(day)
+    else:
+        if day < max_day+1:
+            getDay(day)
 
 def getDay(day):
     if not os.path.isfile(f'data/{day}.txt'):
@@ -46,5 +50,3 @@ def getDay(day):
 def loadDay(day, test=False, tryUpdateData=True):
     filepath = f"./data/test{day}.txt" if test else f"./data/{day}.txt"
     return open(filepath)
-
-updateData()
